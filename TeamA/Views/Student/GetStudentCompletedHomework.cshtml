@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AccessModels.Models.StudentHomeworkDetails>
+
+@{
+    ViewBag.Title = "GetStudentCompletedHomework";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1>Completed Homeworks</h1>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10">
+            <table class="table">
+                <thead>
+                    <tr class="success">
+                        <th>@Html.DisplayNameFor(model => model.HomeWorkName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Deadline)</th>
+                        <th>@Html.DisplayNameFor(model => model.Status)</th>
+                        <th>@Html.DisplayNameFor(model => model.StudentGrade)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="info">
+                            @Html.HiddenFor(modelItem => item.TeacherId)
+                            @Html.HiddenFor(modelItem => item.HomeworkId)
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HomeWorkName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Deadline)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StudentGrade)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                @Html.ActionLink("Back to Index", "Index", "Student")
+
+            </div>
+        </div>
+        
+    </div>
+
+</div>

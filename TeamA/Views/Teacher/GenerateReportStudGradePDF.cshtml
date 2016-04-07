@@ -1,0 +1,27 @@
+﻿@model Tuple<List<AccessModels.Models.StudentToHomework>, int>
+
+@{
+    ViewBag.Title = "ReportsPresenter";
+    Layout = "~/Views/Shared/_PDFLayout.cshtml";
+}
+
+<div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-xs-6 text-left">
+                <div class="previous">
+                    <h2>Reports</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.Partial("_GetStudentsGradeByTeacherAndHomework", Model)
+    <p>
+        @Html.ActionLink("Back to Index", "Index", "Teacher")
+    </p>
+</div>
+
+

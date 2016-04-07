@@ -1,0 +1,125 @@
+﻿@model BusinessLayer.Models.ExplorerModelVM
+
+@{Uri uri = Request.Url;}
+
+@*Show the current directory name using page URL. *@
+@*If we were in root folder then don't show the up one level image. *@
+@*@if (uri.AbsolutePath.ToLower() != "/Teacher/")
+{*@
+    @*Making a URL to going up one level. *@
+    @*string[] upPath = Request.RawUrl.Split('/');
+    string newPath = "";
+    for (int i = 2; i < upPath.Length - 1; i++)
+    {
+        newPath += upPath[i];
+        if (i < upPath.Length - 2)
+        {
+            newPath += '/';
+        }
+    }
+    <a title="Parent"
+       href="@newPath">
+        <img src="@Url.Content("~/Content/images/up.png")" alt="Up" style="width: 20px; height: 20px; border: none" />
+    </a>
+        }
+        *@
+
+
+<table class="table">
+    <tr>
+        <th>
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            File size
+        </th>
+        <th>
+            Last accessed
+        </th>
+        <th>
+            Deadline
+        </th>
+    </tr>
+    @*Listing the directories *@
+    @foreach (BusinessLayer.Models.DirModel dir in Model.dirModelList)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Content("~/Content/images/folder.png")" alt="Folder Logo" align="top" style="width: 20px;
+                height: 20px; border: none" />
+            </td>
+            <td class="dirNameDiv">
+                @{
+                    string path = Request.QueryString["path"];
+                    string studentFolder = Request.QueryString["studentFolder"];
+                    string homeworkFolder = Request.QueryString["homeworkFolder"];
+                    if (path == null)
+                    {
+                        if (studentFolder == null)
+                        {
+                            if (homeworkFolder == null)
+                            {
+                                homeworkFolder = dir.DirName;
+                            }
+                            else
+                            {
+                                studentFolder = dir.DirName;
+                            }
+                        }
+                        else
+                        {
+                            path = path + dir.DirName + "/";
+                        }
+                    }
+                    else
+                    {
+                        path = path + "/" + dir.DirName;
+                    }
+                    @Html.ActionLink(dir.DirName, ViewContext.RouteData.GetRequiredString("action"), ViewContext.RouteData.GetRequiredString("controller"),
+                    new
+                    {
+                        teacherFolder = Request.QueryString["teacherFolder"],
+                        homeworkFolder = homeworkFolder,
+                        studentFolder = studentFolder,
+                        path = path
+                    }, null);
+                }
+                
+                @*<a href="@(Request.RawUrl + '/' + dir.DirName)" title="@dir.DirName">@dir.DirName</a>*@
+            </td>
+            <td></td>
+            <td>
+                @dir.DirAccessed
+            </td>
+            <td>
+                @dir.Deadline
+            </td>
+        </tr>
+    }
+    @*Listing the files *@
+    @foreach (BusinessLayer.Models.FileModel file in Model.fileModelList)
+    {
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                @Html.ActionLink(file.FileName, ViewContext.RouteData.GetRequiredString("action"), ViewContext.RouteData.GetRequiredString("controller"),
+                    new { teacherFolder = Request.QueryString["teacherFolder"], homeworkFolder = Request.QueryString["homeworkFolder"],
+                          studentFolder = Request.QueryString["studentFolder"], path = Request.QueryString["path"] + file.FileName }, null)
+                @*<a href="@(Request.RawUrl + '/' + file.FileName)"
+                   title="@file.FileName" target="_blank">
+                    @file.FileName
+                </a>*@
+            </td>
+            <td>
+                @file.FileSizeText
+            </td>
+            <td>
+                @file.FileAccessed
+            </td>
+        </tr>
+    }
+</table>

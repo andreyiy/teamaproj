@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BusinessLayer.Models.StudentHomeworkDetailsVM>
+
+@{
+    ViewBag.Title = "GetStudentPendingHomework";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1>Pending Homeworks</h1>
+    </div>
+    
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <table class="table">
+                <thead>
+                    <tr class="success">
+                        <th>@Html.DisplayNameFor(model => model.TeacherName)</th>
+                        <th>@Html.DisplayNameFor(model => model.HomeWorkName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Deadline)</th>      
+                        <th></th>            
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="info">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TeacherName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HomeWorkName, new { name = "HomeWorkName" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description, new { name = "Description" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Deadline, new { name = "Deadline" })
+                            </td>                           
+                            <td>
+                                @Html.ActionLink("Details", "ViewHomeworkDetails", 
+                                    new 
+                                    { 
+                                        id = item.HomeworkId,
+                                        teacherFolder = item.TeacherName + "_" + item.TeacherId,
+                                        homeworkFolder = item.HomeWorkName + "_" + item.HomeworkId,
+                                        studentFolder = Session["SessionUser"] + "_" + Session["SessionUserId"],
+                                        path = Request.QueryString["path"]
+                                    })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                @Html.ActionLink("Back to Index", "Index", "Student")
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

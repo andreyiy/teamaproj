@@ -1,0 +1,19 @@
+﻿@{   
+    Layout = "~/Views/Shared/_PDFLayout.cshtml";
+}
+
+@model IEnumerable<BusinessLayer.Models.StudentVM>
+
+<div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-xs-6 text-left">
+                <div class="previous">
+                    <h2>ListStudents</h2>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+            
+@Html.Partial("_ListStudents", Model)

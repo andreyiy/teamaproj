@@ -1,0 +1,124 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "ViewStudentHomework";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+
+    string s = Request.QueryString["path"].ToString();
+    var a = s.Split('_');
+    ViewBag.UploadID = Convert.ToInt32(a[a.Length - 1]);
+    
+}
+
+
+
+<h2>ViewStudentHomework</h2>
+
+<div class="row">
+    <div class="container col-lg-6 col-md-6 col-sm-8 col-xs-8">
+       
+
+        <textarea cols="100" readonly="readonly" id="fileText" style="width:100%;margin:auto" name="fileText" rows="20">  @Model   </textarea>
+
+    </div>
+    
+</div>
+
+        @Html.Hidden("uploadId", (int)ViewBag.UploadID)
+    <div class="row">
+    <div class="container col-lg-3 col-md-3 col-sm-4 col-xs-4">
+        <div align="left">
+            <textarea cols="50" id="txtComment" style="width:100%;margin:auto" name="txtComment" rows="5"> </textarea>
+
+            <input type="submit" id="btnComment" value="Submit Comment" onclick="ShowCommentLabel(document.getElementById('uploadId').value, document.getElementById('txtComment').value)" class="bg-success btn-default" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container col-lg-1 col-md-1 col-sm-2 col-xs-2">
+            <div align="left">
+                <input type="text" name="grade" id="txtGrade" maxlength="2" max="10" min="1" style="width:20px;margin:auto" />
+                <div class="row" style="height:5px"></div>
+                <input type="submit" value="Add Grade" id="btnGrade" onclick="ShowGradeLabel(document.getElementById('uploadId').value, document.getElementById('txtGrade').value)" class="bg-success btn-success" />
+            </div>
+
+            <div class="row"style="height:10px"></div>
+            
+
+            <div align="left">
+               
+                <input type="submit" id="btnReject" onclick="ShowRejectLabel(document.getElementById('uploadId').value)" class="bg-success btn-danger" value="Reject Homework" />
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <label id="lblReject" for="btnReject" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(document).ready();
+
+        function ShowRejectLabel(uploadId) {
+            $.ajax({
+                url: '@Url.Action("InsertStatus", "Teacher")',
+                type: 'POST',
+                data: { uploadId: uploadId },
+                async: true,
+                success: function (data) {
+                    if (data == "Success!") {
+                        $('#lblReject').text(data).css('color', 'green');
+                    }
+                    else {
+                        $('#lblReject').text(data).css('color', 'red');
+                    }
+                }
+            });
+        }
+        function ShowGradeLabel(uploadId, Grade) {
+            $.ajax({
+                url: '@Url.Action("InsertGradeOrStatus", "Teacher")',
+                type: 'POST',
+                data: { uploadId: uploadId, grade: Grade },
+                async: true,
+                success: function (data) {
+
+                    if (data == "Success!") {
+                        $('#lblReject').text(data).css('color', 'green');
+                    }
+                    else {
+                        $('#lblReject').text(data).css('color', 'red');
+                    }
+
+                }
+            });
+
+        }
+
+        function ShowCommentLabel(uploadId, comment) {
+            $.ajax({
+                url: '@Url.Action("InsertCommentOrStatus", "Teacher")',
+                type: 'POST',
+                data: { uploadId: uploadId, comment: comment },
+                async: true,
+                success: function (data) {
+
+                    if (data == "Success!") {
+                        $('#lblReject').text(data).css('color', 'green');
+                    }
+                    else {
+                        $('#lblReject').text(data).css('color', 'red');
+                    }
+                }
+            });
+        }
+    </script>
+

@@ -1,0 +1,97 @@
+﻿@model BusinessLayer.Models.AccountTeacherListVm
+
+@{
+    ViewBag.Title = "ViewAllStudents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="page-header">
+        <h1>All Students</h1>
+        <div class="checkbox text-right">
+            <label><input type="checkbox" id="Checkbox" value="" >Show Students without Teacher</label>
+        </div>
+    </div>
+    
+    
+</div>
+
+<div class="container" id="tabelDiv">     
+         @Html.Partial("_ViewAllStudents", Model)
+         @Html.ActionLink("Back to Index", "Index", "Admin")     
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#Checkbox").change(function (event) {
+            if (this.checked)
+            {
+                
+                $.ajax
+                ({
+                    url: "@Url.Action("ViewAllUnassignedStudents", "Admin")",
+                    method: "POST",
+                    dataType:"html",
+                    success: function (data, textStatus, XMLHttpRequest) {
+                        SetData(data);
+                        }
+                })
+            }
+            else
+            {
+                $.ajax
+                ({
+                    url: "@Url.Action("ViewAllStudentsBack", "Admin")",
+                    method: "get",
+                    dataType:"html",
+                    success: function (data, textStatus, XMLHttpRequest)
+                    {
+                    SetData(data);
+                    }
+                })
+            }
+                
+        }
+      )
+
+        function SetData(data) {
+            $("#tabelDiv").html(data); // HTML DOM replace
+        }
+
+        $(".resetStudButton").click(function () {
+            var Username = $(this).closest("tr").children(".userNameDiv")[0].innerText;
+            var mvcURL = "/Admin/SendMailWithPassword"
+            $.ajax({
+                url: mvcURL,
+                data: { username: Username },
+                type: 'POST',
+                success: function (data, status, jqXHR) {
+                    alert("Succesfull reset! Yay!");
+                },
+                error: function (error) {
+                    alert('error; ');
+                }
+            })
+
+        })
+
+        $(document).on('change', '.TeacherSelect', function() 
+        {
+            var teacherName = $(this)[0].options[$(this)[0].selectedIndex].value;
+            var studentName = $(this).closest("tr").children(".userNameDiv")[0].innerText;
+            var mvcURL = "/Admin/UpdateTeacherOfStudent"
+            $.ajax({
+                url: mvcURL,
+                data: { studentName : studentName, teacherName: teacherName },
+                type: 'POST',
+                success: function () 
+                {
+                    alert("Ieeei!");
+                }
+            })
+        })
+    });
+</script>

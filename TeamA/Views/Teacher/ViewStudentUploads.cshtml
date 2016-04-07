@@ -1,0 +1,11 @@
+﻿@model BusinessLayer.Models.ExplorerModelVM
+
+@{
+    ViewBag.Title = "ViewStudentUploads";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+@{
+    ViewBag.Title = "Folder Explorer";
+}
+@Html.Partial("_FolderBrowser", Model)

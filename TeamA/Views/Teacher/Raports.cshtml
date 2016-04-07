@@ -1,0 +1,67 @@
+﻿@model System.Collections.Generic.IEnumerable<BusinessLayer.Models.HomeworkVM>
+@{
+        ViewBag.Title = "Raports";
+        Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+    }
+    <h2>Raports</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="button" class="btn" id="GetStudentsAvgGradeByTeacher" value="Student Average Grade" /><br />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <input type="button" class="btn" id="GetStudentsGradeByTeacherAndHomework" value=" Students grade by homework" />
+        </div>
+        <div class="col-sm-3 pull-left">
+            <select class="form-control" name="HomeworkID" id="sel1">
+
+                @foreach (var item in Model)
+                {
+
+                    <option value="@item.HomeworkID">@item.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="tableDiv">
+</div>
+
+<script>
+    $(document).ready(function () 
+    {
+        $("#GetStudentsAvgGradeByTeacher").on("click", function () {
+            $.ajax
+            ({
+                url: "@Url.Action("GetStudentsAvgGradeByTeacher", "Teacher")",
+                method: "GET",
+                success: function (data, textStatus, XMLHttpRequest) 
+                {
+                    $("#tableDiv").html(data);
+                }
+            })
+        })
+    })
+    
+    $(document).ready(function () 
+    {
+        $("#GetStudentsGradeByTeacherAndHomework").on("click", function () {
+            var hID = $("#sel1")[0].options[$("#sel1")[0].options.selectedIndex].value;
+            $.ajax
+            ({
+                url: "@Url.Action("GetStudentsGradeByTeacherAndHomework", "Teacher")",
+                data: { homeworkID: hID },
+                method: "GET",
+            success: function (data, textStatus, XMLHttpRequest) 
+            {
+                $("#tableDiv").html(data);
+            }
+        })
+    })
+    })
+
+</script>

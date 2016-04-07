@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AccessModels.Models.StudentToHomework>
+
+@{
+    ViewBag.Title = "GenerateReportStudAvgGradePDF";
+    Layout = "~/Views/Shared/_PDFLayout.cshtml";
+}
+
+<h2>GenerateReportStudAvgGradePDF</h2>
+
+<div>
+    @Html.Partial("_GetStudentsAvgGradeByTeacher", Model)
+    <p>
+        @Html.ActionLink("Back to Index", "Index", "Teacher")
+    </p>
+</div>

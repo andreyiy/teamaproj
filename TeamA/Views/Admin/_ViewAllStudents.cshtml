@@ -1,0 +1,53 @@
+﻿@model BusinessLayer.Models.AccountTeacherListVm
+<table class="table">
+    <thead>
+        <tr class="success">
+
+            <th>@Html.DisplayNameFor(model => Model.AccountList[0].UserName)</th>
+            <th>@Html.DisplayNameFor(model => Model.AccountList[0].Email)</th>
+            <th>@Html.DisplayNameFor(model => Model.AccountList[0].IsConfirmed)</th>
+            <th>Choose Teacher</th>
+            <th>Reset Password</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AccountList)
+        {
+            <tr class="info">
+                <td class="userNameDiv">
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsConfirmed)</td>
+                <td>
+                    @using (Html.BeginForm("SendMailWithPassword", "Admin", new { username = item.UserName }, FormMethod.Post))
+                    {
+                        <select class="form-control col-xs-4 row TeacherSelect" name="TeacherName" id="sel1">
+                            @foreach (var itemList in Model.TeacherList)
+                            {
+                                if (item.TeacherName != itemList)
+                                {
+                                    <option value="@itemList">@itemList</option>
+                                }
+                                else
+                                {
+                                    <option value="@itemList" selected>@itemList</option>
+                                }
+                            }
+                        </select>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("SendMailWithPassword", "Admin", new { username = item.UserName }, FormMethod.Post))
+                    {
+                        <button type="button" class="btn btn-primary btn-xs resetStudButton" onclick="">Reset</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

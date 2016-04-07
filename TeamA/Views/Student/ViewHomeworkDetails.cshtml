@@ -1,0 +1,47 @@
+﻿@model BusinessLayer.Models.StudentHomeworkBroswerDetailsVM
+
+@{
+    ViewBag.Title = "ViewHomeworkDetails";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h2>ViewHomeworkDetails</h2>
+
+<fieldset>
+    <legend>StudentHomeworkDetails</legend>
+    @Html.HiddenFor(model => model.Details.TeacherId)
+    @Html.HiddenFor(model => model.Details.HomeworkId)
+    <div class="well">@Html.DisplayNameFor(model => model.Details.TeacherName):@Html.DisplayFor(model => model.Details.TeacherName)</div>
+
+    <div class="well"> @Html.DisplayNameFor(model => model.Details.Comment): @Html.DisplayFor(model => model.Details.Comment)</div>
+
+    <div class="well"> @Html.DisplayNameFor(model => model.Details.StudentGrade): @Html.DisplayFor(model => model.Details.StudentGrade)</div>
+
+    <div class="well">@Html.DisplayNameFor(model => model.Details.HomeWorkName):@Html.DisplayFor(model => model.Details.HomeWorkName)</div>
+
+    <div class="well"> @Html.DisplayNameFor(model => model.Details.Description):@Html.DisplayFor(model => model.Details.Description)</div>
+
+    <div class="well"> @Html.DisplayNameFor(model => model.Details.Deadline):@Html.DisplayFor(model => model.Details.Deadline)</div>
+
+
+</fieldset>
+
+<h2>@Model.Details.HomeWorkName</h2>
+@Html.Partial("_FolderBrowser", Model.FolderStructure)
+
+Upload files
+@using (Html.BeginForm("UploadHomework", "Student", 
+    new { id = ViewBag.HomeworkID ,teacherFolder = Request.QueryString["teacherFolder"], homeworkFolder = Request.QueryString["homeworkFolder"], studentFolder = Request.QueryString["studentFolder"], path = Request.QueryString["path"]}, 
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*<input type="file" name="homeworkFile"/>
+    <input type="hidden" name="homeworkID" value="@Model.Details.HomeworkId" />
+    <button type="submit" class="btn-default">Upload</button>*@
+        <label class="btn btn-primary" for="my-file-selector">
+        <input type="hidden" name="homeworkID" value="@Model.Details.HomeworkId" />
+    <input id="my-file-selector" type="file" name="homeworkFile"style="display:none;"/>
+   Choose File
+        
+</label>
+    <button type="submit" class="btn btn-primary">Upload</button>
+}

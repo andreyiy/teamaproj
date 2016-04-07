@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AccessModels.Models.Homework>
+
+@{
+    ViewBag.Title = "GetOneTeacherHomework";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1>My Homeworks</h1>
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "CreateHomework", "Teacher")
+    </p>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <table class="table">
+                <thead>
+                    <tr class="success">
+                        <th>@Html.DisplayNameFor(model => model.HomeworkName)</th>
+                        @*<th>@Html.HiddenFor(model => model.TeacherUserID)</th>*@
+                        <th>@Html.DisplayNameFor(model => model.Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Deadline)</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="info">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HomeworkName)
+                            </td>
+                            @*<td>
+                                @Html.HiddenFor(modelItem => item.TeacherUserID)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Deadline)
+                            </td>                           
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+            <div>
+                @Html.ActionLink("Back to Index", "Index", "Teacher")
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

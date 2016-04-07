@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title  My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width " />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/jquery.datetimepicker.full.js")
+    @Styles.Render("~/Content/jquery.datetimepicker.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/BootstrapJS")
+
+</head>
+
+<body>  
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @RenderSection("featured", required: false)
+                @RenderBody()
+            </div>
+        </div>
+
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Date</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BusinessLayer.Models.StudentVM>
+
+@{
+    ViewBag.Title = "ListStudents";
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-xs-6 text-left">
+                <div class="previous">
+                    <h2>ListStudents</h2>
+                </div>
+            </div>
+            <div class="col-xs-6 text-right">
+                <div class="next">
+                    @*@Html.ActionLink("VREAU PDF!!!", "GeneratePDF", "Teacher", new { newList = Model }, null);*@
+                    <button type="button" class="btn btn-primary btn-sm text-right pdfButton" onclick="">See in PDF</button>
+                </div>
+            </div>
+         </div>
+     </div>
+</div>
+
+<div>
+    @Html.Partial("_ListStudents")  
+    <p>
+        @Html.ActionLink("Back to Index", "Index", "Teacher")
+    </p>
+</div>
+
+<script type="text/javascript">
+
+    $(".pdfButton").click(function () {
+        location.href = '/Teacher/GeneratePDF';        
+    });
+
+    
+</script>
+

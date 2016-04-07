@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BusinessLayer.Models.HomeworkVM>
+
+@{
+    ViewBag.Title = "_ListHomeworks";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <table class="table">
+                <thead>
+                    <tr class="success">
+                        <th class="hidden">@Html.DisplayNameFor(model => model.HomeworkID)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Description)</th>
+                        <th>@Html.DisplayNameFor(model => model.Deadline)</th>
+                        <th class="hidden">@Html.DisplayNameFor(model => model.TeacherID)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="info">
+                            <td class="hidden">@Html.DisplayFor(modelItem => item.HomeworkID)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Deadline)</td>
+                            @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>*@
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</div>

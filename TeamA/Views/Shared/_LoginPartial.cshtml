@@ -1,0 +1,40 @@
+﻿@if (Session["SessionUser"] != null)
+{
+    <text>
+        Hello, @Session["SessionUser"]!
+        @using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Log off">
+        }
+    </text>
+}
+else
+{
+    @*<nav class="navbar navbar-inverse">*@
+  <div class="container-fluid">
+    @*<div class="navbar-header">*@
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="span6 pull-right">
+    <div class="btn-group">
+   
+        <button type="button" class="btn btn-default">
+            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+        </button>
+    
+
+   
+        <button type="button" class="btn btn-default">
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </button>
+    
+        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      @*</div>*@
+@*</nav>*@
+    
+}
