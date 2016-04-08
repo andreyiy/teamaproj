@@ -3,13 +3,13 @@
     Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
 }
 
-<h2>Chat Teacher</h2>
+<h2>Chat Student</h2>
 
 
 @section scripts{
     @*@Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
-    @Scripts.Render("~/Scripts/jquery.signalR-2.2.0.min.js")
-    @Scripts.Render("/signalr/hubs")*@
+        @Scripts.Render("~/Scripts/jquery.signalR-2.2.0.min.js")
+        @Scripts.Render("/signalr/hubs")*@
 
 
     <script type="text/javascript">
@@ -73,7 +73,7 @@
                 });
             });
         }
-        
+
     </script>
 }
 
@@ -83,26 +83,26 @@
 
 
 @*<div id="container">
-    <input type="hidden" id="uName" />
-    <div id="chLog"></div>
-    <div id="onUsers">
-        <b>Online users</b>
-    </div>
-    
-    <div id="chArea">
-        <div class="msgLog">
-            <textarea id="msg" class="messagebox"></textarea>
+        <input type="hidden" id="uName" />
+        <div id="chLog"></div>
+        <div id="onUsers">
+            <b>Online users</b>
         </div>
-        <div class="actionpane">
-            <input type="button" id="btnSend" value="Send"/>
+
+        <div id="chArea">
+            <div class="msgLog">
+                <textarea id="msg" class="messagebox"></textarea>
+            </div>
+            <div class="actionpane">
+                <input type="button" id="btnSend" value="Send"/>
+            </div>
+            <div class="actionpane">
+                <select id="users">
+                    <option value="All">All</option>
+                </select>
+            </div>
         </div>
-        <div class="actionpane">
-            <select id="users">
-                <option value="All">All</option>
-            </select>
-        </div>
-    </div>
-</div>*@
+    </div>*@
 
 <div class="container col-md-5" id="container">
     <div class="panel panel-primary">

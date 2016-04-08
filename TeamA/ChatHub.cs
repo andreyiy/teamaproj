@@ -13,9 +13,10 @@ namespace TeamA
 
         static ConcurrentDictionary<string, string> dictConn = new ConcurrentDictionary<string, string>();
 
-        public void Send(string name, string message)
+        public void Send(string groupname,string name, string message)
         {
-            Clients.All.broadcastMessage(name, message);
+            //Clients.All.broadcastMessage(name, message);
+            Clients.All.broadcastMessage(name, message,groupname);
         }
 
         public void SendToUser(string name, string message, string to)
@@ -45,8 +46,15 @@ namespace TeamA
         {
             var name = dictConn.FirstOrDefault(x => x.Value == Context.ConnectionId.ToString());
             string s;
-            dictConn.TryRemove(name.Key, out s);
-            return Clients.All.disconnected(name.Key);
+            try
+            {
+                dictConn.TryRemove(name.Key, out s);
+            }
+            catch
+            {
+                return Clients.All.disconnected(name.Key);
+            }
+                return Clients.All.disconnected(name.Key);
         }
 
 

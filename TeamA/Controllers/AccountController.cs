@@ -46,6 +46,7 @@ namespace TeamA.Controllers
                 userService.Login(vm.UserName, vm.Password);
                 Session["SessionUser"] = vm.UserName;
                 Session["SessionUserId"] = userService.GetUser(vm.UserName).Item1;
+                int m = userService.GetUser(vm.UserName).Item1;
                 Session["Role"] = userService.GetRole(vm.UserName);
                 var cookie = new HttpCookie("Cookie");
                 cookie.Expires = DateTime.Now.AddDays(30);
@@ -55,6 +56,15 @@ namespace TeamA.Controllers
 
                 Response.AppendCookie(cookie);
                 string role = userService.GetRole(vm.UserName);
+
+                if (role == "Student")
+                {
+                    Session["Room"] = userService.GetTeacherName(m);
+                }
+                else
+                {
+                    Session["Room"] = vm.UserName;
+                }
 
                 if ((ReturnUrl == "") || (ReturnUrl == null))
                     return RedirectToAction("Index", role);

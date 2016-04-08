@@ -446,6 +446,7 @@
     <Content Include="Views\Teacher\GenerateReportStudAvgGradePDF.cshtml" />
     <Content Include="Views\Teacher\ChatRoom.cshtml" />
     <Content Include="Views\Teacher\SRChat.cshtml" />
+    <Content Include="Views\Student\SRChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

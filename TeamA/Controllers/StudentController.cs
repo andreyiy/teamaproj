@@ -169,6 +169,9 @@ namespace TeamA.Controllers
         //    return View(studentPendingHomeworkUpload);
         //}
 
-
+        public ActionResult SRChat()
+        {
+            return View();
+        }
     }
 }
