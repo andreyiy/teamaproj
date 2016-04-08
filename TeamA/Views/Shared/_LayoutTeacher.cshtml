@@ -5,7 +5,7 @@
     <title>@ViewBag.Title - My ASP.NET MVC Application</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     @*<meta name="viewport" content="width=device-width" />*@
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Styles.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jquery")
@@ -15,46 +15,76 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/BootstrapJS")
     @Scripts.Render("~/bundles/ajax")
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="/signalr/hubs"></script>
 </head>
 <body>
-        <div class="container">
-            <h2>Welcome!</h2>
+    <div class="container">
+        <h2>Welcome!</h2>
 
-            <div class="row">
-                <div class="col-md-10">
-                    <ul class="nav nav-tabs">
-                        <li>@Html.ActionLink("Home", "Index", "Teacher")</li>
-                        <li>@Html.ActionLink("View All Students", "ListStudents", "Teacher")</li>
-                        <li>@Html.ActionLink("View all homework", "ViewOneTeacherHomeworks", "Teacher")</li>
-                        <li>@Html.ActionLink("View student uploads", "ViewStudentUploads", "Teacher", new { teacherFolder = (string)Session["SessionUser"] + "_" + Session["SessionUserId"] }, null)</li>
-                        <li>@Html.ActionLink("Raports","Raports","Teacher")</li>
-                    </ul>
-                </div>
-                <div class="col-md-2">
-                    @Html.Partial("_LoginPartial")
-                </div>
+        <div class="row">
+            <div class="col-md-10">
+                <ul class="nav nav-tabs">
+                    <li>@Html.ActionLink("Home", "Index", "Teacher")</li>
+                    <li>@Html.ActionLink("View All Students", "ListStudents", "Teacher")</li>
+                    <li>@Html.ActionLink("View all homework", "ViewOneTeacherHomeworks", "Teacher")</li>
+                    <li>@Html.ActionLink("View student uploads", "ViewStudentUploads", "Teacher", new { teacherFolder = (string)Session["SessionUser"] + "_" + Session["SessionUserId"] }, null)</li>
+                    <li>@Html.ActionLink("Raports", "Raports", "Teacher")</li>
+                    <li><div id="circle"></div></li>
+                </ul>
             </div>
-
-        </div>
-        <div class="container">
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    @RenderSection("featured", required: false)
-                    @RenderBody()
-                </div>
+            <div class="col-md-2">
+                @Html.Partial("_LoginPartial")
             </div>
-
-            <footer>
-                <div class="content-wrapper">
-                    <div class="float-left">
-                        <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                    </div>
-                </div>
-            </footer>
         </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    </div>
+
+    @*<script type="text/javascript">
+        $('#circle').on("click", function () {
+            $('#circle').fadeOut();
+            $('#circle').css("background-color", "red");
+            $('#circle').fadeIn();
+            $('#chatDiv').toggle();
+        });
+
+        $(document).ready(function () {
+            var _name = '@Session["SessionUser"]';
+            $('#nameDiv').text(_name);
+
+            var chatProxy = $.connection.chatHub;
+
+            $.connection.hub.start().done(function () {
+                $('#sendMsg').click(function () {
+                    chatProxy.server.broadcastMessage($('#nameDiv').text(), $('#msgVal').val());
+                    $('#msgVal').val('').focus();
+                })
+            });
+
+            chatProxy.client.receiveMessage = function (name, msg) {
+                $('#textAr').append('\n' + name + ':&nbsp;&nbsp;' + msg);
+                var textarea = document.getElementById('textAr');
+                textarea.scrollTop = textarea.scrollHeight;
+            };
+        });
+    </script>*@
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @RenderSection("featured", required: false)
+                @RenderBody()
+            </div>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

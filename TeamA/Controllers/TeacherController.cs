@@ -258,5 +258,16 @@ namespace TeamA.Controllers
             var homeworks= homeworkService.GetOneTeacherHomework((string)Session["SessionUser"]);
             return View(homeworks);
         }
+
+        public ActionResult ChatRoom()
+        {
+            return View();
+        }
+
+
+        public ActionResult SRChat()
+        {
+            return View();
+        }
     }
 }
