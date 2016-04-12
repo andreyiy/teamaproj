@@ -5,104 +5,112 @@
 
 <h2>Chat Student</h2>
 
+<script type="text/javascript">
+    $(function () {
+        startChatHub();
+    });
+    function startChatHub() {
 
-@section scripts{
-    @*@Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
-        @Scripts.Render("~/Scripts/jquery.signalR-2.2.0.min.js")
-        @Scripts.Render("/signalr/hubs")*@
+        var chat = $.connection.chatHubv2;
+        var name = '@Session["SessionUser"]';
+        var role = '@Session["Role"]';
+        var room = '@Session["Room"]';
+        $('#uName').val(name);
+        $('#pName').text(name);
 
-
-    <script type="text/javascript">
-        $(function () {
-            startChatHub();
-        });
-        function startChatHub()
-        {
-            var chat = $.connection.chatHub;
-            var name = '@Session["SessionUser"]';
-            var role = '@Session["Role"]';
-            var room = '@Session["Room"]';
-            $('#uName').val(name);
-            $('#pName').text(name);
-            chat.client.online = function (name) {
-                if (name == $('#uName').val())
-                    $('#onUsers').append('<div class="border" style="color:green">You: ' + name + '</div>');
-                else {
-                    $('#onUsers').append('<div class="border">' + name + '</div>');
-                    $('#users').append('<option value="' + name + '">' + name + '</option>');
-                }
-            };
-
-            chat.client.enters = function (name) {
-                $('#chLog').append('<div style="font-style:italic;"><i>' + name + ' joins the conversation</i></div>');
+        chat.client.online = function (name) {
+            if (name == $('#uName').val())
+                $('#onUsers').append('<div class="border" style="color:green">You: ' + name + '</div>');
+            else {
+                $('#onUsers').append('<div class="border" id="'+name+'" style="color:blue">' + name + '</div>');
                 $('#users').append('<option value="' + name + '">' + name + '</option>');
-                $('#onUsers').append('<div class="border">' + name + '</div>');
-            };
-
-            chat.client.broadcastMessage = function (name, message, groupname) {
-                if (room == groupname) {
-                    if (name == $('#uName').val())
-                        $('#chLog').append('<div class="border"><span style="color:green">' + 'You' + '</span>: ' + message + '</div>');
-                    else
-                        $('#chLog').append('<div class="border"><span style="color:orange">' + name + '</span>: ' + message + '</div>');
-                }
-            };
-            chat.client.broadcastPrivateMessage = function (name, message, to) {
-                if (name == $('#uName').val())
-                    $('#chLog').append('<div class="border"><span style="color:green">' + 'You </span>' + '-> <span style="color:red">' + to + '</span>: ' + message + '</div>');
-                else if(to==$('#uName').val())
-                    $('#chLog').append('<div class="border"><span style="color:red">' + name + '</span>-><span style="color:green">' + 'You' + '</span>: ' + message + '</div>');
-            };
-            chat.client.disconnected = function (name) {
-                $('#chLog').append('<div style="font-style:italic;"><i>' + name + ' leaves the conversation</i></div>');
-                $('#onUsers div').remove(":contains('" + name + "')");
-                $('#users option').remove(":contains('" + name + "')");
             }
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
+        };
 
-            $.connection.hub.start().done(function () {
-                chat.server.notify($('#uName').val(), $.connection.hub.id);
-
-                $('#btnSend').click(function () {
-                    if ($("#users").val() == "All") {
-                        chat.server.send(room, $('#uName').val(), $('#msg').val());
-                    }
-                    else {
-                        chat.server.sendToUser($('#uName').val(), $('#msg').val(), $("#users").val());
-                    }
-                    $('#msg').val('').focus();
-                });
-            });
+        chat.client.retrieveMessages = function (messages) {
+            for (i = 0; i < messages.length; i++) {
+                if (messages[i].RoomName == room) {
+                    if (messages[i].UserName == $('#uName').val())
+                        $('#chLog').append('<div class="border"><span style="color:green">' + 'You' + '</span>: ' + messages[i].Message + '</div>');
+                    else
+                        $('#chLog').append('<div class="border"><span style="color:orange">' + messages[i].UserName + '</span>: ' + messages[i].Message + '</div>');
+                }
+            }
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
         }
 
-    </script>
-}
+        chat.client.retrievePrivateMessage = function (messages) {
+            for (i = 0; i < messages.length; i++) {
+                if (messages[i].FromUser == name) {
+                    $('#chLog').append('<div class="border"><span style="color:green"> Whisper to  </span>' + '<span style="color:red">' + messages[i].ToUser + '</span>: ' + messages[i].Message + '</div>');
+                }
+                else if (messages[i].ToUser == name) {
+                    $('#chLog').append('<div class="border"><span style="color:green"> Whisper from </span><span style="color:red">' + messages[i].FromUser + '</span>: ' + messages[i].Message + '</div>');
+                }
+            }
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
+        }
 
+        chat.client.enters = function (name) {
+            $('#chLog').append('<div style="font-style:italic;"><i>' + name + ' joins the conversation</i></div>');
+            $('#users').append('<option value="' + name + '">' + name + '</option>');
+            $('#onUsers').append('<div class="border" id="'+name+'" style="color:blue">' + name + '</div>');
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
 
+        };
 
+        chat.client.broadcastMessage = function (name, message) {
+            if (name == $('#uName').val())
+                $('#chLog').append('<div class="border"><span style="color:green">' + 'You' + '</span>: ' + message + '</div>');
+            else
+                $('#chLog').append('<div class="border"><span style="color:orange">' + name + '</span>: ' + message + '</div>');
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
 
+        };
 
+        chat.client.broadcastPrivateMessage = function (name, message, to) {
+            if (name == $('#uName').val()) {
+                $('#chLog').append('<div class="border"><span style="color:green"> Whisper to  </span>' + '<span style="color:red">' + to + '</span>: ' + message + '</div>');
+            }
+            else if (to == $('#uName').val())
+                $('#chLog').append('<div class="border"><span style="color:green"> Whisper from </span><span style="color:red">' + name + '</span>: ' + message + '</div>');
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
 
-@*<div id="container">
-        <input type="hidden" id="uName" />
-        <div id="chLog"></div>
-        <div id="onUsers">
-            <b>Online users</b>
-        </div>
+        };
 
-        <div id="chArea">
-            <div class="msgLog">
-                <textarea id="msg" class="messagebox"></textarea>
-            </div>
-            <div class="actionpane">
-                <input type="button" id="btnSend" value="Send"/>
-            </div>
-            <div class="actionpane">
-                <select id="users">
-                    <option value="All">All</option>
-                </select>
-            </div>
-        </div>
-    </div>*@
+        chat.client.disconnected = function (name) {
+            $('#chLog').append('<div style="font-style:italic;"><i>' + name + ' leaves the conversation</i></div>');
+            $('#onUsers div').remove(":contains('" + name + "')");
+            $('#users option').remove(":contains('" + name + "')");
+            $('#chLog').scrollTop($('#chLog')[0].scrollHeight);
+
+        }
+
+        $.connection.hub.start().done(function () {
+            chat.server.notify($('#uName').val(), $.connection.hub.id, room);
+
+            chat.server.joinRoom(room);
+
+            $('#btnSend').click(function () {
+                if ($("#users").val() == "All") {
+                    chat.server.send(room, $('#uName').val(), $('#msg').val());
+                }
+                else {
+                    chat.server.sendToUser($('#uName').val(), $('#msg').val(), $("#users").val());
+                }
+                $('#msg').val('').focus();
+            });
+
+            $('#msg').keypress(function (e) {
+                if (e.which == 13) {
+                    $('#btnSend').click();
+                }
+            });
+        });
+    }
+
+</script>
 
 <div class="container col-md-5" id="container">
     <div class="panel panel-primary">
@@ -119,7 +127,7 @@
             <input type="text" id="msg" />
             <button id="btnSend" value="Send">Send</button>
             <select id="users">
-                <option value="All">All</option>
+                <option value="All">Group</option>
             </select>
         </div>
     </div>

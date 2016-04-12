@@ -5,10 +5,10 @@ using System.Web;
 
 namespace TeamA
 {
-    public class MessageDetails
+    public class PrivateMessageDetails
     {
-        public string UserName { get; set; }
+        public string FromUser { get; set; }
+        public string ToUser { get; set; }
         public string Message { get; set; }
-        public string RoomName { get; set; }
     }
 }

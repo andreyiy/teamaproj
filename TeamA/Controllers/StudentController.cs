@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TeamA.Attributes;
+using TeamA.Authorize;
 
 namespace TeamA.Controllers
 {
@@ -168,7 +169,7 @@ namespace TeamA.Controllers
 
         //    return View(studentPendingHomeworkUpload);
         //}
-
+        [CustomAuthorize(Roles = "Student")]
         public ActionResult SRChat()
         {
             return View();

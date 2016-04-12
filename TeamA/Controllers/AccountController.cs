@@ -46,7 +46,7 @@ namespace TeamA.Controllers
                 userService.Login(vm.UserName, vm.Password);
                 Session["SessionUser"] = vm.UserName;
                 Session["SessionUserId"] = userService.GetUser(vm.UserName).Item1;
-                int m = userService.GetUser(vm.UserName).Item1;
+                int tempID = userService.GetUser(vm.UserName).Item1;
                 Session["Role"] = userService.GetRole(vm.UserName);
                 var cookie = new HttpCookie("Cookie");
                 cookie.Expires = DateTime.Now.AddDays(30);
@@ -59,7 +59,15 @@ namespace TeamA.Controllers
 
                 if (role == "Student")
                 {
-                    Session["Room"] = userService.GetTeacherName(m);
+                    string tName = userService.GetTeacherName(tempID);
+                    if (tName != "Not found")
+                    {
+                        Session["Room"] = tName;
+                    }
+                    else
+                    {
+                        Session["Room"] = "No Room";
+                    }
                 }
                 else
                 {

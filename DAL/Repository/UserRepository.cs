@@ -227,8 +227,13 @@ namespace TeamA.Repository
                 }
 
             }
-            int tID = usrID[0];
-            return tID;
+            if (usrID.Count >0)
+            {
+                int tID = usrID[0];
+                return tID;
+            }
+            else
+                return -1;
         }
     }
 }
