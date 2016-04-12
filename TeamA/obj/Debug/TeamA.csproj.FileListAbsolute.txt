@@ -54,3 +54,6 @@ D:\proiect final\teamaproj\TeamA\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 D:\proiect final\teamaproj\TeamA\bin\Microsoft.Owin.xml
 D:\proiect final\teamaproj\TeamA\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\proiect final\teamaproj\TeamA\bin\Microsoft.Owin.Security.xml
+D:\srTeamA\teamaproj\TeamA\obj\Debug\TeamA.csprojResolveAssemblyReference.cache
+D:\srTeamA\teamaproj\TeamA\obj\Debug\TeamA.dll
+D:\srTeamA\teamaproj\TeamA\obj\Debug\TeamA.pdb
