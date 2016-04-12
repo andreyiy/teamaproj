@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHelpers", "Helpers\ServiceHelpers.csproj", "{A04AEEC8-532A-4449-9C24-3392A3CA7D9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API Rest Service", "API Rest Service\API Rest Service.csproj", "{150A9E6A-CB7A-4F93-8A66-1E3C1AFCAB87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A04AEEC8-532A-4449-9C24-3392A3CA7D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A04AEEC8-532A-4449-9C24-3392A3CA7D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A04AEEC8-532A-4449-9C24-3392A3CA7D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{150A9E6A-CB7A-4F93-8A66-1E3C1AFCAB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{150A9E6A-CB7A-4F93-8A66-1E3C1AFCAB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{150A9E6A-CB7A-4F93-8A66-1E3C1AFCAB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{150A9E6A-CB7A-4F93-8A66-1E3C1AFCAB87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
