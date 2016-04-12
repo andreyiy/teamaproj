@@ -102,5 +102,17 @@ namespace BusinessLayer
         {
             return _userRepository.GetAllUnassignedStudents();
         }
+
+        public string GetTeacherName(int studentID)
+        {
+            int index = _userRepository.GetTeacherID(studentID);
+            if (index == -1)
+            {
+                return "Not found";
+            }
+            var a = GetAllUsers();
+            var user = a.Where(q => q.ID == index).SingleOrDefault();
+            return user.Username;
+        }
     }
 }

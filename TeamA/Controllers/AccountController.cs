@@ -10,20 +10,21 @@ using TeamA.Authorize;
 using TeamA.Models;
 
 namespace TeamA.Controllers
-{   [AllowAnonymous]
+{
+    [AllowAnonymous]
     [CookieFilter]
-   
+
     public class AccountController : Controller
     {
 
 
 
         UserService userService = new UserService();
-        
+
         public ActionResult Index()
         {
-            
-          return View();
+
+            return View();
         }
 
         public ActionResult Login()
@@ -38,19 +39,15 @@ namespace TeamA.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(AccountVM vm,string ReturnUrl)
+        public ActionResult Login(AccountVM vm, string ReturnUrl)
         {
             try
             {
                 userService.Login(vm.UserName, vm.Password);
-                
                 Session["SessionUser"] = vm.UserName;
                 Session["SessionUserId"] = userService.GetUser(vm.UserName).Item1;
-
-
-                
-
-                //if (vm.Remember){
+                int tempID = userService.GetUser(vm.UserName).Item1;
+                Session["Role"] = userService.GetRole(vm.UserName);
                 var cookie = new HttpCookie("Cookie");
                 cookie.Expires = DateTime.Now.AddDays(30);
                 cookie["username"] = vm.UserName;
@@ -58,15 +55,31 @@ namespace TeamA.Controllers
 
 
                 Response.AppendCookie(cookie);
-            //}
-                string role = userService.GetRole(vm.UserName);
+            }                string role = userService.GetRole(vm.UserName);
+
+                if (role == "Student")
+                {
+                    string tName = userService.GetTeacherName(tempID);
+                    if (tName != "Not found")
+                    {
+                        Session["Room"] = tName;
+                    }
+                    else
+                    {
+                        Session["Room"] = "No Room";
+                    }
+                }
+                else
+                {
+                    Session["Room"] = vm.UserName;
+                }
 
                 if ((ReturnUrl == "") || (ReturnUrl == null))
                     return RedirectToAction("Index", role);
                 else
                     return RedirectToAction(ReturnUrl);
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 return View("Error", (object)e.Message);
             }
@@ -85,7 +98,7 @@ namespace TeamA.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(AccountVM vm,TeacherListVM tvm)
+        public ActionResult Register(AccountVM vm, TeacherListVM tvm)
         {
 
 
@@ -113,14 +126,16 @@ namespace TeamA.Controllers
         }
 
         public AccountVM CheckCookie()
-        {   AccountVM account=null;
-               HttpCookie  cookie=null;
+        {
+            AccountVM account = null;
+            HttpCookie cookie = null;
             string username = string.Empty; string password = string.Empty;
-            if (HttpContext.Request.Cookies["Cookie"] != null) 
-             cookie = Request.Cookies["Cookie"];
-               username = cookie["username"];
-               password = cookie["password"];
-            
+
+            if (HttpContext.Request.Cookies["Cookie"] != null)
+                cookie = Request.Cookies["Cookie"];
+            username = cookie["username"];
+            password = cookie["password"];
+
 
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
                 account = new AccountVM
@@ -146,6 +161,6 @@ namespace TeamA.Controllers
         }
 
 
-}
+    }
 
 }

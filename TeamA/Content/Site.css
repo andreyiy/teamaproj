@@ -79,3 +79,10 @@ textarea {
 	background:url(../images/tail-middle.jpg) repeat-y center 194px;
 	min-width:940px;
 }
+
+div#circle{
+    width:24px;
+    height:24px;
+    border-radius:12px;
+    background-color:green;
+}

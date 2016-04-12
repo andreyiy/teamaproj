@@ -46,7 +46,7 @@ namespace TeamA.Repository
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("spCreateStudent",con);
+                SqlCommand cmd = new SqlCommand("spCreateStudent", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -64,7 +64,7 @@ namespace TeamA.Repository
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("spLogin",con);
+                SqlCommand cmd = new SqlCommand("spLogin", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -76,10 +76,10 @@ namespace TeamA.Repository
                 List<int> loginlist = new List<int>();
                 while (rdr.Read())
                 {
-                        
+
                     int g;
-                        g = (int) rdr["ReturnCode"];
-                        loginlist.Add(g);
+                    g = (int)rdr["ReturnCode"];
+                    loginlist.Add(g);
                 }
 
 
@@ -106,17 +106,18 @@ namespace TeamA.Repository
                 string guid;
                 SqlCommand cmd = new SqlCommand("spGetGUID", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@username",username);
+                cmd.Parameters.AddWithValue("@username", username);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 List<string> readguidlist = new List<string>();
-                
-                while(rdr.Read()){
-                 string g  ;
-                   g =rdr["HashConfirmationCode"].ToString();
+
+                while (rdr.Read())
+                {
+                    string g;
+                    g = rdr["HashConfirmationCode"].ToString();
                     readguidlist.Add(g);
                 }
-                guid=readguidlist[0];
+                guid = readguidlist[0];
 
                 return guid;
             }
@@ -155,7 +156,8 @@ namespace TeamA.Repository
             }
         }
 
-        public string GetRole(string username){
+        public string GetRole(string username)
+        {
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string role;
@@ -206,6 +208,32 @@ namespace TeamA.Repository
 
                 return lista;
             }
+        }
+
+        public int GetTeacherID(int studentID)
+        {                
+            List<int> usrID = new List<int>();
+            using(SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT TeacherID from StudentsToTeachers where StudentID=@id", con);
+                cmd.Parameters.AddWithValue("@id",studentID);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while(rdr.Read())
+                {
+                    int i = (int)rdr["TeacherID"];
+                    usrID.Add(i);
+                }
+
+            }
+            if (usrID.Count >0)
+            {
+                int tID = usrID[0];
+                return tID;
+            }
+            else
+                return -1;
         }
     }
 }

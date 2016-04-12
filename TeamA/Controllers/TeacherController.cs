@@ -69,7 +69,7 @@ namespace TeamA.Controllers
         }
 
 
-       // [CustomAuthorize(Roles = "Teacher")]
+        // [CustomAuthorize(Roles = "Teacher")]
         public ActionResult GeneratePDF()
         {
             List<StudentVM> L = new List<StudentVM>();
@@ -91,7 +91,7 @@ namespace TeamA.Controllers
             foreach (var item in a)
                 L.Add(new HomeworkVM()
                 {
-                    HomeworkID=item.HomeworkID,
+                    HomeworkID = item.HomeworkID,
                     Name = item.Name,
                     Description = item.Description,
                     Deadline = item.Deadline
@@ -155,8 +155,8 @@ namespace TeamA.Controllers
 
         public ActionResult GetOneTeacherHomework(string username)
         {
-           var teacherHomeworks= homeworkService.GetOneTeacherHomework(username);
-           return View(teacherHomeworks);
+            var teacherHomeworks = homeworkService.GetOneTeacherHomework(username);
+            return View(teacherHomeworks);
         }
 
 
@@ -164,20 +164,20 @@ namespace TeamA.Controllers
         [HttpPost]
         public ActionResult InsertGradeOrStatus(int uploadId, int? grade = null, string comment = null)
         {
-            try 
-			{                              
+            try
+            {
 
-                if(grade != null)
-                { 
-                     homeworkService.InsertCommentOrGradeOrStatus(uploadId, grade, comment);
-                     return Content("Success!");
+                if (grade != null)
+                {
+                    homeworkService.InsertCommentOrGradeOrStatus(uploadId, grade, comment);
+                    return Content("Success!");
                 }
                 else
                 {
                     return Content("Please enter a grade!");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Content(e.Message);
             }
@@ -197,12 +197,12 @@ namespace TeamA.Controllers
                 }
                 else return Content("Comment must not be empty!");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Content(e.Message);
             }
         }
-       
+
         //Insert Rejected Status
         [HttpPost]
         public ActionResult InsertStatus(int uploadId, int? grade = null, string comment = null)
@@ -210,13 +210,13 @@ namespace TeamA.Controllers
             try
             {
                 homeworkService.InsertCommentOrGradeOrStatus(uploadId, null, null);
-               
+
                 return Content("Success!");
             }
             catch (Exception e)
             {
                 return Content(e.Message);
-            }        
+            }
         }
 
         //De facut View si scos raportul cu top 10 studenti in functie de numele profesorului
@@ -226,7 +226,7 @@ namespace TeamA.Controllers
             List<StudentToHomework> studentAvgGradeByTeacher = homeworkService.GetStudentsAvgGradeByTeacher((string)Session["SessionUser"]);
 
 
-            
+
             return PartialView("_GetStudentsAvgGradeByTeacher", studentAvgGradeByTeacher);
 
         }
@@ -249,14 +249,21 @@ namespace TeamA.Controllers
 
             return View("Raports", vmList);
 
-            
+
 
         }
 
         public ActionResult ViewOneTeacherHomeworks()
         {
-            var homeworks= homeworkService.GetOneTeacherHomework((string)Session["SessionUser"]);
+            var homeworks = homeworkService.GetOneTeacherHomework((string)Session["SessionUser"]);
             return View(homeworks);
+        }
+
+
+        [CustomAuthorize(Roles = "Teacher")]
+        public ActionResult SRChat()
+        {
+            return View();
         }
     }
 }

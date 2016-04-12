@@ -171,6 +171,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authorize\CookieFilterAttribute.cs" />
     <Compile Include="Authorize\CustomAuthorizeAttribute.cs" />
+    <Compile Include="ChatHubv2.cs" />
+    <Compile Include="ConnectionMapping.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChatRoomController.cs" />
@@ -180,9 +182,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\MessageDetails.cs" />
+    <Compile Include="App_Code\PrivateMessageDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalR\ChatHub.cs" />
     <Compile Include="SignalR\Startup.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="App_Code\UserDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -191,6 +197,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ChatStyle.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\administration.png" />
     <Content Include="Content\images\background.png" />
@@ -377,6 +384,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="testpage.html" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -441,6 +449,9 @@
     <Content Include="Views\Teacher\GenerateReportStudGradePDF.cshtml" />
     <Content Include="Views\Teacher\GenerateReportStudAvgGradePDF.cshtml" />
     <Content Include="Views\ChatRoom\Chat.cshtml" />
+    <Content Include="Views\Teacher\ChatRoom.cshtml" />
+    <Content Include="Views\Teacher\SRChat.cshtml" />
+    <Content Include="Views\Student\SRChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
