@@ -55,7 +55,7 @@ namespace TeamA.Controllers
 
 
                 Response.AppendCookie(cookie);
-            }                string role = userService.GetRole(vm.UserName);
+                string role = userService.GetRole(vm.UserName);
 
                 if (role == "Student")
                 {

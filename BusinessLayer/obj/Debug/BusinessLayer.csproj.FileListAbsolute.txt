@@ -14,3 +14,19 @@ D:\proiect final\teamaproj\BusinessLayer\bin\Debug\AutoMapper.xml
 D:\proiect final\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 D:\proiect final\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\proiect final\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\AccessModels.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\AutoMapper.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\DAL.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\Helpers.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\PdfSharp.Charting.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\PdfSharp.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\ServiceHelpers.dll
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\DAL.pdb
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\ServiceHelpers.pdb
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\AccessModels.pdb
+D:\srTeamA\teamaproj\BusinessLayer\bin\Debug\AutoMapper.xml
+D:\srTeamA\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\srTeamA\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\srTeamA\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.pdb
