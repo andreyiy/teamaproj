@@ -1,0 +1,16 @@
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\AccessModels.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\AutoMapper.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\DAL.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\Helpers.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\PdfSharp.Charting.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\PdfSharp.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\ServiceHelpers.dll
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\DAL.pdb
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\ServiceHelpers.pdb
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\AccessModels.pdb
+D:\proiect final\teamaproj\BusinessLayer\bin\Debug\AutoMapper.xml
+D:\proiect final\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\proiect final\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\proiect final\teamaproj\BusinessLayer\obj\Debug\BusinessLayer.pdb

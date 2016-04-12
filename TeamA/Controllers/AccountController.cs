@@ -50,7 +50,7 @@ namespace TeamA.Controllers
 
                 
 
-                if (vm.Remember){
+                //if (vm.Remember){
                 var cookie = new HttpCookie("Cookie");
                 cookie.Expires = DateTime.Now.AddDays(30);
                 cookie["username"] = vm.UserName;
@@ -58,7 +58,7 @@ namespace TeamA.Controllers
 
 
                 Response.AppendCookie(cookie);
-            }
+            //}
                 string role = userService.GetRole(vm.UserName);
 
                 if ((ReturnUrl == "") || (ReturnUrl == null))

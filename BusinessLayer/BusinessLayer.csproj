@@ -62,6 +62,7 @@
     <Compile Include="HomeworkService.cs" />
     <Compile Include="Models\AccountTeacherListVm.cs" />
     <Compile Include="Models\AccountVM.cs" />
+    <Compile Include="Models\ChatUserVM.cs" />
     <Compile Include="Models\ExplorerModeVMl.cs" />
     <Compile Include="Models\HomeworkListVM.cs" />
     <Compile Include="Models\HomeworkVM.cs" />

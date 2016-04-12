@@ -1,0 +1,8 @@
+D:\proiect final\teamaproj\DAL\bin\Debug\DAL.dll.config
+D:\proiect final\teamaproj\DAL\bin\Debug\DAL.dll
+D:\proiect final\teamaproj\DAL\bin\Debug\DAL.pdb
+D:\proiect final\teamaproj\DAL\bin\Debug\AccessModels.dll
+D:\proiect final\teamaproj\DAL\bin\Debug\AccessModels.pdb
+D:\proiect final\teamaproj\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\proiect final\teamaproj\DAL\obj\Debug\DAL.dll
+D:\proiect final\teamaproj\DAL\obj\Debug\DAL.pdb

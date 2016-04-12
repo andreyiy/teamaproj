@@ -1,0 +1,5 @@
+D:\proiect final\teamaproj\Models\bin\Debug\AccessModels.dll
+D:\proiect final\teamaproj\Models\bin\Debug\AccessModels.pdb
+D:\proiect final\teamaproj\Models\obj\Debug\AccessModels.csprojResolveAssemblyReference.cache
+D:\proiect final\teamaproj\Models\obj\Debug\AccessModels.dll
+D:\proiect final\teamaproj\Models\obj\Debug\AccessModels.pdb

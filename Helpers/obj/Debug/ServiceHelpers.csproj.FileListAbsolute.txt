@@ -1,0 +1,14 @@
+D:\proiect final\teamaproj\Helpers\bin\Debug\ServiceHelpers.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\ServiceHelpers.pdb
+D:\proiect final\teamaproj\Helpers\bin\Debug\AccessModels.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\AutoMapper.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\MigraDoc.DocumentObjectModel.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\MigraDoc.Rendering.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\MigraDoc.RtfRendering.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\PdfSharp.Charting.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\PdfSharp.dll
+D:\proiect final\teamaproj\Helpers\bin\Debug\AccessModels.pdb
+D:\proiect final\teamaproj\Helpers\bin\Debug\AutoMapper.xml
+D:\proiect final\teamaproj\Helpers\obj\Debug\ServiceHelpers.csprojResolveAssemblyReference.cache
+D:\proiect final\teamaproj\Helpers\obj\Debug\ServiceHelpers.dll
+D:\proiect final\teamaproj\Helpers\obj\Debug\ServiceHelpers.pdb

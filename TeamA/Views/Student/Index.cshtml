@@ -3,5 +3,27 @@
     Layout = "~/Views/Shared/_LayoutStudent.cshtml";
 }
 
-<h2>Index</h2>
-<img src="@Url.Content("~/Content/images/student.png")" align="middle">
+
+<div class="row">
+    <div class="col-md-5 left">
+        <h2>Index</h2>
+        <img src="@Url.Content("~/Content/images/student.png")" align="middle">
+    </div>
+
+
+    <div class="col-sm-5 right">
+        <div class="container">
+            <input type="hidden" id="nickname" />
+            <h2> Online Users</h2>
+            <div class="panel panel-default col-xs-5">
+                <input id="encodedName" type="hidden" />
+                <div id="chatlog"></div>
+                <div id="onlineUsers" class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
